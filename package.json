@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GauravKesarwani/NGenEntertainment.git"
+    "url": "https://github.com/GauravKesarwani/NGenMediaServer.git"
   },
   "author": "Gaurav Kesarwani",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GauravKesarwani/MovieStreaming/issues"
+    "url": "https://github.com/GauravKesarwani/NGenMediaServer/issues"
   },
-  "homepage": "https://github.com/GauravKesarwani/NGenEntertainment",
+  "homepage": "https://github.com/GauravKesarwani/NGenMediaServer",
   "dependencies": {
     "express": "^4.10.2",
     "mongojs": "^0.17.0"
