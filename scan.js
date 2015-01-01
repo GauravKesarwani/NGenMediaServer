@@ -1,7 +1,7 @@
 var mdb = require('moviedb')('fb92666a2288e824aaa575b983c6e182');
 var fs = require('fs');
 var databaseUrl = 'mongodb://localhost:27017/moviedb';
-var collections = ["movie","genre","translations","reviews","trailers"]
+var collections = ["movie","genre","translations","reviews","images","trailers","similar","toprated"]
 var db = require("mongojs").connect(databaseUrl, collections);
 var exec = require('child_process').exec ;
 var folder;
@@ -60,6 +60,7 @@ function processFileName(fileName) {
             var release_date = res.results[i].release_date;
             var release_year = release_date.split("-")[i];
             var movie_id = res.results[i].id;
+			 var id = res.results[i].id;
 
             if (release_year == movieInput.year) {
                 /*
@@ -70,9 +71,17 @@ function processFileName(fileName) {
                 var dest = 'static/videos/' + res.results[i].id + '.mp4';
                 child = exec('ln -s "' + source + '" "' + dest + '"');
 
-                mdb.movieInfo({id: movie_id },function(err,res){
-                    db.movie.save(res);
-                });
+               mdb.movieInfo({id: res.results[i].id}, function (err, movieres) {
+				 //   console.log(movieres.id);
+					//retrieve and store list of available translations
+					mdb.movieTranslations({id:movieres.id}, function (err, transres) {
+				   //     console.log(transres.translations);
+						movieres.translations = transres.translations;
+						console.log(movieres);
+						db.movie.save(movieres);
+
+					});
+				});
 
                 //retrieve Youtube link for movie trailer
                 mdb.movieTrailers({id: movie_id },function(err,res){
@@ -100,24 +109,32 @@ function processFileName(fileName) {
 
                 });
 
-                //retrieve top 5 simialr movies based on rating
-                mdb.movieSimilar({id: movie_id },function(err,res){
-                    
-
-                });
-
-                //retrieve top 5 simialr movies based on rating
-                mdb.movieSimilar({id: movie_id },function(err,res){
-                    
-                });
-
-                //retrieve and store list of available translations for a movie
-                mdb.movieTranslations({id: movie_id},function(err,res){
+               /*  //retrieve and store list of available translations
+                mdb.movieTranslations({id: res.results[i].id}, function (err, res) {
+                  //  console.log(res);
                     db.translations.save(res);
+                }); */
+
+                //retrieve and store all available images(backdrop and posters) for specific movie
+                mdb.movieImages({id: res.results[i].id}, function (err, res) {
+                   // console.log(res);
+                    db.images.save(res);
                 });
+               
 
                 mdb.movieReviews({id:movie_id},function(err,res){
                     db.reviews.save(res);
+                });
+				
+				  mdb.movieSimilar({id: res.results[i].id}, function(err,res){
+                    res.id = id;
+                 //   console.log(res);
+                    db.similar.save(res);
+                });
+
+                mdb.miscTopRatedMovies({}, function(err,res){
+                    console.log(res);
+                    db.toprated.save(res);
                 });
                 break;
             }

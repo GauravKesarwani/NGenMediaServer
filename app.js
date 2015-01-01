@@ -1,7 +1,8 @@
+var mdb = require('moviedb')('fb92666a2288e824aaa575b983c6e182');
 var express = require('express');
 var app = express();
 var databaseUrl = "moviedb"; // "username:password@example.com/mydb"
-var collections = ["movie","genre","translations","reviews","trailers","tvShow","tvShowCollection","tvSeasons","tvEpisodes"];
+var collections = ["movie","genre","translations","reviews","trailers","tvShow","tvShowCollection","tvSeasons","tvEpisodes","images","similar","toprated"];
 var db = require("mongojs").connect(databaseUrl, collections);
 
 app.use(express.static(__dirname + '/static'));
@@ -53,6 +54,20 @@ app.get('/movie/:id', function(req,res){
 		res.send(JSON.stringify({movies : data} ));
 
 	});
+});
+
+// return movie information according to particular locale
+app.get('/movie/translations/:id/:lang',function(req,res){
+   var movieId = req.params.id;
+   var lang = req.params.lang;
+   var searchId = '{' + '"id":' + movieId  + ',"language":"' + lang + '"}';
+   console.log(searchId);
+   mdb.movieInfo(JSON.parse(searchId), function(err,data){
+      console.log(data);
+      var d = [];
+      d.push(data);
+      res.send(JSON.stringify({movies: d}));
+   })
 });
 //returns all the genres present in movie database
 app.get('/allgenres',function(req,res) {
@@ -154,10 +169,37 @@ app.get('/tvShows/:id/seasons/:seasonNum/episodes/:episodeNum', function (req, r
 	var tvShowId = parseInt(req.params.id);
 	var seasonNum = parseInt(req.params.seasonNum);
 	var episodeNum = parseInt(req.params.episodeNum);
-
+	console.log(tvShowId + "::" + seasonNum);
 	db.tvEpisodes.find({tvShowID : tvShowId, season_number: seasonNum, episode_number : episodeNum}, function(err,data){
 		res.send(JSON.stringify({tvShowEpisodeDetails : data[0]} ));
 	});
+});
+/*
+* This api will return all the similar movies for a given movie id
+ */
+
+app.get('/movie/similar/:id', function(req,res){
+	var movieId = req.params.id;
+	var searchId = '{' + '"id"' + ':' + movieId + "}";
+	console.log(searchId);
+	db.similar.find(JSON.parse(searchId),function(err,data){
+	/*	var result = [];
+		for(var i=0;i< data.length;i++){
+			result[i] = data[0].results;
+		}
+	*/
+			res.send(JSON.stringify({similar:data[0].results}));
+	});
+});
+
+/*
+* This api will get the  top rated movies
+ */
+app.get('/movie/top/rated', function(req,res){
+   db.toprated.find({}, function(err,data){
+      console.log(data);
+      res.send(JSON.stringify({toprated:data[0].results}));
+   });
 });
 
 var server = app.listen(process.env.PORT || 3000, function () {
