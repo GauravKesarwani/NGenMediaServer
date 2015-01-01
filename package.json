@@ -18,6 +18,7 @@
   "homepage": "https://github.com/GauravKesarwani/NGenEntertainment",
   "dependencies": {
     "express": "^4.10.2",
-    "mongojs": "^0.17.0"
+    "mongojs": "^0.17.0",
+    "moviedb": "^0.1.9"
   }
 }
