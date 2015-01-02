@@ -121,7 +121,7 @@ var folderPath = getFolderPath();
 printFileNamesInFolder(folderPath);
 
 
-/*
+
 parseTvShow("The Big Bang Theory - s01e01.mkv")
 parseTvShow("The Big Bang Theory - s02e01.mkv")
 parseTvShow("The Big Bang Theory - s02e04.mkv")
@@ -144,6 +144,4 @@ parseTvShow("Episodes - s01e02.mkv");
 
 parseTvShow("Breaking Bad - s01e01.mkv");
 parseTvShow("Game Of Thrones  - s01e01.mkv");
-
-*/
 

@@ -1,5 +1,5 @@
-var databaseUrl = 'mongodb://localhost:27017/moviedb';
-//var databaseUrl = 'mongodb://heroku_app32949176:662s0b9872fupjmvj6dpb36hdo@ds029831.mongolab.com:29831/heroku_app32949176';
+//var databaseUrl = 'mongodb://localhost:27017/moviedb';
+var databaseUrl = 'mongodb://heroku_app32949176:662s0b9872fupjmvj6dpb36hdo@ds029831.mongolab.com:29831/heroku_app32949176';
 var collections = ["tvShow","tvEpisodes","tvSeasons","tvShowCollection"];
 var mongodb = require("mongojs").connect(databaseUrl, collections);
 

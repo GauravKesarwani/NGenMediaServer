@@ -18,3 +18,5 @@ Technology Stack Used :
 1) Front End - HTML5, Javascript, JQuery, CSS, AJAX, Bootstrap 3.3
 2) Back End - NodeJS, Web server - Express Framework
 3) Database - MongoDB
+
+Deployed on heroku @  https://aqueous-refuge-4595.herokuapp.com/
