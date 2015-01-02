@@ -1,6 +1,7 @@
 var mdb = require('moviedb')('fb92666a2288e824aaa575b983c6e182');
 var fs = require('fs');
-var databaseUrl = 'mongodb://localhost:27017/moviedb';
+//var databaseUrl = 'mongodb://localhost:27017/moviedb';
+var databaseUrl = 'mongodb://heroku_app32949176:662s0b9872fupjmvj6dpb36hdo@ds029831.mongolab.com:29831/heroku_app32949176'
 var collections = ["movie","genre","translations","reviews","images","trailers","similar","toprated"]
 var db = require("mongojs").connect(databaseUrl, collections);
 var exec = require('child_process').exec ;
