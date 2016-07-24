@@ -1,7 +1,6 @@
-$( document ).ready(function() {
+$(document).ready(function() {
     getAllGenre();
 	getMovies();
-	//getMovieList();
 	getTopRated();
 	getTvShows();
 });
@@ -72,7 +71,7 @@ function getTopRated(){
 			+" <i class=\"fa-heart-o\"></i> "
 			+ movies[i].vote_average
 			+" </a></li></ul></div></div> ";
-			$("#toprated").append(div);
+			$("#topratedCollection").append(div);
 		}
 	});
 }

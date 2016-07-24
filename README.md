@@ -1,3 +1,5 @@
+** General Notes
+
 Next Gen is an web and mobile application to organize all your personal media wherever you
 keep it, so you can enjoy it on any device.
 
@@ -20,3 +22,9 @@ Technology Stack Used :
 3) Database - MongoDB
 
 Deployed on heroku @  https://aqueous-refuge-4595.herokuapp.com/
+
+:END:
+
+** Server Start Instructions:
+
+

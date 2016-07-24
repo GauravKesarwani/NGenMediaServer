@@ -8,7 +8,7 @@ $( document ).ready(function() {
 function populateUI(data,status,jXHR){
 	//data will have the result json
 	//iterate over the result json
-	for(int i=0;i<data.length;i++){
+	for(var i=0;i<data.length;i++){
 		//set image src path
 		var img_id= "#i"+i;
 		$(img_id).attr("src",data[i].poster_path);
