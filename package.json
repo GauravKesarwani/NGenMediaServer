@@ -6,9 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "node": "4.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/GauravKesarwani/NGenEntertainment.git"
@@ -22,7 +19,6 @@
   "dependencies": {
     "express": "^4.10.2",
     "mongojs": "^2.4.0",
-    "moviedb": "^0.1.9",
-    "mongodb": "^2.2.4"
+    "moviedb": "^0.1.9"
   }
 }
