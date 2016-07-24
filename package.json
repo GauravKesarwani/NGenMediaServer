@@ -23,6 +23,6 @@
     "express": "^4.10.2",
     "mongojs": "^2.4.0",
     "moviedb": "^0.1.9",
-    "mongodb": "^3.0.7"
+    "mongodb": "^2.2.4"
   }
 }
