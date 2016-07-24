@@ -1,8 +1,8 @@
 var mdb = require('moviedb')('fb92666a2288e824aaa575b983c6e182');
 var express = require('express');
 var app = express();
-//var databaseUrl = "mongodb://heroku_app32949176:s1234$@ds029831.mlab.com:29831/heroku_app32949176"
-var databaseUrl = "moviedb"; // "username:password@example.com/mydb"
+var databaseUrl = "mongodb://heroku_app32949176:s1234$@ds029831.mlab.com:29831/heroku_app32949176"
+//var databaseUrl = "moviedb"; // "username:password@example.com/mydb"
 var collections = ["movie", "genre", "translations", "reviews", "trailers", "tvShow", "tvShowCollection", "tvSeasons", "tvEpisodes", "images", "similar", "toprated"];
 var mongojs = require("mongojs");
 var db = mongojs(databaseUrl, collections);
