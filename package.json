@@ -20,6 +20,6 @@
   "dependencies": {
     "express": "^4.10.2",
     "mongojs": "^2.4.0",
-    "moviedb": "^0.1.9"
+    "moviedb": "^0.2.0"
   }
 }
